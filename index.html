@@ -8,25 +8,47 @@
     <title>homepage saya</title>
 </head>
 <body>
-    <h1>Halo, Selamat Datang</h1>
+    <div class="running-text">Halloo, Selamat Datang di Website Mamass </div>
+    <h1>Website Mamasss</h1>
+    <ul>
+        
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="tentang saya.html">Tentang saya</a></li>
+        <li><a href="Masukan.html">Masukan</a></li>
+      </ul>
     <h2></h2>
-    <p>Perkenalkan nama saya Muhammad Dimas Arasy ini adalah</p>
-    <i>homepage</i>
-    <b>Pertama</b> Saya, karena saya masih belajar mengenai <b></i>homepage <i></b>
+    <p>Haii, Perkenalkan nama saya Muhammad Dimas Arasy ini adalah</p>
+       Homepage
+       pertama saya, karena saya masih belajar mengenai Homepage
         <p>
          <a href="https://perpus.jatengprov.go.id/" target="_blank"> Perpustakaan jateng</a>
+
 </body>
-    <h2>Halaman Lain</h2>
-    
-        <li><a href="tentang saya.html">Tentang Saya<a/></a></li>
-        <li><a href="masukan.html">masukan</a></li>
-    
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        for (let i = 0; i < 20; i++) {
+            let bubble = document.createElement("div");
+            bubble.className = "bubble";
+            bubble.style.left = Math.random() * 100 + "vw";
+            bubble.style.width = bubble.style.height = Math.random() * 50 + "px";
+            bubble.style.animationDuration = Math.random() * 3 + 3 + "s";
+            document.body.appendChild(bubble);
+        }
+    });
+    </script>
+
+<br> 
 <br>
-    
         <button type="button"
 onclick="document.getElementById('demo').innerHTML = Date()">
-Click</button>
+Time</button>
 
 <p id="demo"></p>
 </center>
+
+<script src="javascript.js"></script>
+<footer>
+       © 2025 Perpustakaan Mamasss 
+</footer>
 </html> 
+

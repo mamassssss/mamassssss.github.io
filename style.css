@@ -3,12 +3,80 @@ ul {
 
 }
 body {
-    background-color: lightblue;
+    background-color: #ffffff;
 }
-img {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
   }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: rgb(255, 0, 0);
+  }
+  
+  .running-text {
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(18, 17, 17);
+    animation: marquee 10s linear infinite;
+}
 
+@keyframes marquee {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 10;
+  width: 100%;
+  background-color: #f8f9fa; /* Sesuaikan dengan tema blog */
+  text-align: center;
+  padding: 10px 100;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  background: #467a4f;
+  overflow: hidden;
+}
+
+body {
+margin: 0;
+height: 100vh;
+background: #f1f2f1;
+overflow: hidden;
+}
+
+.bubble {
+position: absolute;
+bottom: -50px;
+width: 30px;
+height: 30px;
+background: rgba(245, 5, 5, 0.486);
+border-radius: 50%;
+animation: float 6s linear infinite;
+}
+
+@keyframes float {
+0% { transform: translateY(0) scale(0.5); opacity: 1; }
+100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+}
