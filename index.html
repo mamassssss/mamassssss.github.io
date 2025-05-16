@@ -117,11 +117,11 @@
             letter-spacing: 1px;
             box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
         }
-        /* Bubble effect */
+        /* Bubble effect - WARNA MERAH */
         .bubble {
             position: fixed;
             bottom: -100px;
-            background: rgba(255, 193, 7, 0.09);
+            background: rgba(255, 0, 0, 0.15); /* Merah transparan */
             border-radius: 50%;
             opacity: 0.35;
             z-index: 0;
@@ -247,24 +247,16 @@
     </div>
     <!-- Bubble Effect -->
     <script>
-       .bubble {
-    position: fixed;
-    bottom: -100px;
-    background: rgba(255, 0, 0, 0.09);
-    border-radius: 50%;
-    opacity: 0.35;
-    z-index: 0;
-    animation: floatUp linear infinite;
-    filter: blur(2.5px);
-}
-
-@keyframes floatUp {
-    to {
-        transform: translateY(-110vh);
-        opacity: 0;
-    }
-}
-
+        document.addEventListener("DOMContentLoaded", function() {
+            for (let i = 0; i < 20; i++) {
+                let bubble = document.createElement("div");
+                bubble.className = "bubble";
+                bubble.style.left = Math.random() * 100 + "vw";
+                let size = Math.random() * 40 + 30;
+                bubble.style.width = bubble.style.height = size + "px";
+                bubble.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                document.body.appendChild(bubble);
+            }
         });
     </script>
     <footer>
