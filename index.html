@@ -116,6 +116,7 @@
             font-size: 1rem;
             letter-spacing: 1px;
             box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+            z-index: 1020;
         }
         /* Bubble effect - WARNA MERAH */
         .bubble {
@@ -134,7 +135,29 @@
                 opacity: 0;
             }
         }
-        /* Responsive */
+        /* Cookie Consent Banner */
+        .cookie-consent {
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            background: rgba(24,24,28,0.98);
+            color: #ffe082;
+            padding: 20px 10px 16px 10px;
+            text-align: center;
+            z-index: 1050;
+            box-shadow: 0 -2px 16px rgba(0,0,0,0.32);
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: transform 0.4s cubic-bezier(.4,2,.6,1), opacity 0.3s;
+        }
+        .cookie-consent.hide {
+            transform: translateY(120%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .cookie-consent .btn {
+            margin: 0 8px;
+            min-width: 90px;
+        }
         @media (max-width: 575px) {
             .glass-overlay, .event-section {
                 padding: 1.2rem 0.7rem;
@@ -142,8 +165,11 @@
             .navbar-brand {
                 font-size: 1.1rem;
             }
+            .cookie-consent {
+                font-size: 0.95rem;
+                padding: 16px 4px 12px 4px;
+            }
         }
-        /* Layout improvement */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -175,13 +201,13 @@
         <div class="main-content">
             <div class="glass-overlay text-center">
                 <h1 class="mb-3">Website Mamasss</h1>
-                <p>Haii, Perkenalkan nama saya <b>Muhammad Dimas Arasy</b>. Ini adalah homepage pertama saya, karena saya masih belajar mengenai homepage.</p>
+                <p>Haii, Perkenalkan nama saya <b id="namaUser">Muhammad Dimas Arasy</b>. Ini adalah homepage pertama saya, karena saya masih belajar mengenai homepage.</p>
                 <p>
                     <a href="https://perpus.jatengprov.go.id/" target="_blank" class="btn btn-warning btn-sm mt-2">
                         Kunjungi Perpustakaan Jateng
                     </a>
                 </p>
-                <button class="btn btn-primary mt-3" onclick="document.getElementById('demo').innerHTML = Date()">Tampilkan Waktu</button>
+                <button class="btn btn-primary mt-3" onclick="tampilkanWaktu()">Tampilkan Waktu</button>
                 <p id="demo" class="mt-2"></p>
             </div>
             <!-- EVENT SECTION -->
@@ -245,9 +271,23 @@
             <!-- END KOLEKSI BUKU TERBARU -->
         </div>
     </div>
-    <!-- Bubble Effect -->
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-consent" style="display:none;">
+        <span>
+            Website ini menggunakan cookies untuk meningkatkan pengalaman Anda. 
+            Dengan melanjutkan, Anda menyetujui penggunaan cookies kami.
+        </span>
+        <button class="btn btn-warning btn-sm" onclick="setCookieConsent(true)">Setuju</button>
+        <button class="btn btn-secondary btn-sm" onclick="setCookieConsent(false)">Tolak</button>
+    </div>
+
+    <!-- Bubble Effect & Cookie Consent Script -->
     <script>
+        let cookieAllowed = false;
+
         document.addEventListener("DOMContentLoaded", function() {
+            // Bubble effect
             for (let i = 0; i < 20; i++) {
                 let bubble = document.createElement("div");
                 bubble.className = "bubble";
@@ -257,7 +297,75 @@
                 bubble.style.animationDuration = (Math.random() * 3 + 3) + "s";
                 document.body.appendChild(bubble);
             }
+            // Cookie consent
+            const consent = getCookie("cookieConsent");
+            if (!consent) {
+                document.getElementById("cookieConsent").style.display = "block";
+            } else if (consent === "accepted") {
+                cookieAllowed = true;
+                loadUserData();
+            }
         });
+
+        function setCookieConsent(agree) {
+            setCookie("cookieConsent", agree ? "accepted" : "declined", 365);
+            let banner = document.getElementById("cookieConsent");
+            banner.classList.add("hide");
+            setTimeout(() => { banner.style.display = "none"; }, 400);
+            cookieAllowed = agree;
+            if (agree) {
+                loadUserData();
+            } else {
+                // Jika user menolak, hapus data user dari cookie
+                setCookie("namaUser", "", -1);
+                document.getElementById("namaUser").textContent = "Muhammad Dimas Arasy";
+            }
+        }
+
+        // Cookie helpers
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days*24*60*60*1000));
+            const expires = "expires="+ d.toUTCString();
+            document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
+        }
+        function getCookie(name) {
+            const cname = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(cname) == 0) {
+                    return c.substring(cname.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        // Fungsi untuk load nama user jika cookie diizinkan
+        function loadUserData() {
+            let nama = getCookie("namaUser");
+            if (nama) {
+                document.getElementById("namaUser").textContent = nama;
+            }
+        }
+
+        // Tombol waktu + input nama
+        function tampilkanWaktu() {
+            document.getElementById('demo').innerHTML = Date();
+            if (!cookieAllowed) {
+                alert("Anda menolak cookies. Data Anda tidak akan disimpan.");
+                return;
+            }
+            let nama = prompt("Masukkan nama Anda:", getCookie("namaUser") || "Muhammad Dimas Arasy");
+            if (nama && nama.trim() !== "") {
+                setCookie("namaUser", nama.trim(), 7);
+                document.getElementById("namaUser").textContent = nama.trim();
+            }
+        }
     </script>
     <footer>
         © 2025 Perpustakaan Mamasss
