@@ -13,110 +13,110 @@
     <style>
         body {
             min-height: 100vh;
-            /* Warm gradient background */
-            background: linear-gradient(120deg, #ffecd2 0%, #fcb69f 100%);
+            background: linear-gradient(120deg, #18181c 0%, #23232b 100%);
             font-family: 'Poppins', Arial, sans-serif;
+            color: #f5f5f5;
         }
         .navbar {
-            background: rgba(255, 183, 77, 0.88) !important;
-            box-shadow: 0 4px 16px rgba(255, 152, 0, 0.12);
+            background: rgba(24, 24, 28, 0.92) !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
         }
         .navbar-brand, .navbar-nav .nav-link {
-            color: #a15c13 !important;
+            color: #ffe082 !important;
             font-weight: 600;
             letter-spacing: 1px;
         }
         .navbar-nav .nav-link.active {
-            color: #ff9800 !important;
-            border-bottom: 2px solid #ff9800;
+            color: #ffb300 !important;
+            border-bottom: 2px solid #ffb300;
         }
         .running-text {
-            background: linear-gradient(90deg, #ffb347 0%, #ffcc80 100%);
-            color: #a15c13;
+            background: linear-gradient(90deg, #23232b 0%, #33334a 100%);
+            color: #ffe082;
             font-weight: bold;
-            padding: 10px 0;
+            padding: 12px 0;
             border-radius: 0 0 18px 18px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.10);
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.16);
             font-size: 1.1rem;
         }
-        .overlay {
-            background: rgba(255,255,255,0.80);
+        .glass-overlay {
+            background: rgba(30, 30, 38, 0.82);
             border-radius: 22px;
             padding: 2.5rem 2.5rem 2rem 2.5rem;
-            margin-top: 3rem;
-            box-shadow: 0 8px 32px rgba(255, 152, 0, 0.13);
+            margin: 2.5rem auto 0 auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.28);
             max-width: 600px;
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(4px);
         }
-        .overlay h1 {
-            color: #ff9800;
+        .glass-overlay h1 {
+            color: #ffb300;
             font-weight: 700;
             letter-spacing: 1px;
         }
         .btn-primary {
-            background: linear-gradient(90deg,#ff9800 40%, #ffb347 100%);
+            background: linear-gradient(90deg,#ffb300 40%, #ffe082 100%);
             border: none;
             font-weight: 600;
             letter-spacing: 1px;
-            color: #fff;
-            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.18);
+            color: #23232b;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.18);
         }
         .btn-primary:hover {
-            background: linear-gradient(90deg,#ffb347 0%, #ff9800 100%);
-            color: #fff;
+            background: linear-gradient(90deg,#ffe082 0%, #ffb300 100%);
+            color: #23232b;
         }
         .btn-warning {
-            background: linear-gradient(90deg,#ffe082 0%, #ffb347 100%);
-            color: #a15c13;
+            background: linear-gradient(90deg,#33334a 0%, #ffb300 100%);
+            color: #ffe082;
             font-weight: 600;
             border: none;
         }
         .btn-warning:hover {
-            background: linear-gradient(90deg,#ffb347 0%, #ffe082 100%);
-            color: #a15c13;
+            background: linear-gradient(90deg,#ffb300 0%, #33334a 100%);
+            color: #fffde7;
         }
         .event-section {
-            background: rgba(255, 183, 77, 0.93);
+            background: rgba(35, 35, 54, 0.96);
             border-radius: 22px;
             margin: 2.5rem auto 0 auto;
             padding: 2.2rem 2.5rem;
             max-width: 650px;
-            color: #a15c13;
-            box-shadow: 0 8px 32px rgba(255, 152, 0, 0.14);
-            backdrop-filter: blur(1.5px);
+            color: #ffe082;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+            backdrop-filter: blur(2px);
         }
         .event-section h2 {
-            color: #ff9800;
+            color: #ffb300;
             font-weight: 700;
         }
         .event-img {
             max-width: 100%;
             border-radius: 16px;
             margin-bottom: 1.3rem;
-            box-shadow: 0 4px 16px rgba(255, 152, 0, 0.15);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
         }
         footer {
             text-align: center;
-            color: #a15c13;
-            background: rgba(255, 183, 77, 0.93);
+            color: #ffe082;
+            background: rgba(35, 35, 54, 0.97);
             padding: 1rem 0;
             position: fixed;
             bottom: 0; left: 0; right: 0;
             font-size: 1rem;
             letter-spacing: 1px;
-            box-shadow: 0 -2px 12px rgba(255, 152, 0, 0.08);
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
         }
         /* Bubble effect */
         .bubble {
             position: fixed;
             bottom: -100px;
-            background: rgba(255, 193, 7, 0.29);
+            background: rgba(255, 193, 7, 0.09);
             border-radius: 50%;
-            opacity: 0.7;
+            opacity: 0.35;
             z-index: 0;
             animation: floatUp linear infinite;
-            filter: blur(1.5px);
+            filter: blur(2.5px);
         }
         @keyframes floatUp {
             to {
@@ -126,18 +126,25 @@
         }
         /* Responsive */
         @media (max-width: 575px) {
-            .overlay, .event-section {
+            .glass-overlay, .event-section {
                 padding: 1.2rem 0.7rem;
             }
             .navbar-brand {
                 font-size: 1.1rem;
             }
         }
+        /* Layout improvement */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#"><i class="bi bi-book-half me-2"></i>Mamasss</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -154,31 +161,32 @@
     </nav>
     <!-- Running Text -->
     <div class="container">
-        <div class="running-text">Halloo, Selamat Datang di Website Mamasss</div>
-        <div class="overlay mx-auto text-center">
-            <h1 class="mb-3">Website Mamasss</h1>
-            <p>Haii, Perkenalkan nama saya <b>Muhammad Dimas Arasy</b>. Ini adalah homepage pertama saya, karena saya masih belajar mengenai homepage.</p>
-            <p>
-                <a href="https://perpus.jatengprov.go.id/" target="_blank" class="btn btn-warning btn-sm mt-2">
-                    Kunjungi Perpustakaan Jateng
+        <div class="running-text text-center">Halloo, Selamat Datang di Website Mamasss</div>
+        <div class="main-content">
+            <div class="glass-overlay text-center">
+                <h1 class="mb-3">Website Mamasss</h1>
+                <p>Haii, Perkenalkan nama saya <b>Muhammad Dimas Arasy</b>. Ini adalah homepage pertama saya, karena saya masih belajar mengenai homepage.</p>
+                <p>
+                    <a href="https://perpus.jatengprov.go.id/" target="_blank" class="btn btn-warning btn-sm mt-2">
+                        Kunjungi Perpustakaan Jateng
+                    </a>
+                </p>
+                <button class="btn btn-primary mt-3" onclick="document.getElementById('demo').innerHTML = Date()">Tampilkan Waktu</button>
+                <p id="demo" class="mt-2"></p>
+            </div>
+            <!-- EVENT SECTION -->
+            <div class="event-section text-center">
+                <h2 class="mb-3"><i class="bi bi-calendar-event"></i> Event Terbaru: Point Blank Indonesia</h2>
+                <img src="https://static.pointblank.id/assets/img/event/event-thumbnail.png" alt="Point Blank Event" class="event-img">
+                <p>
+                    Jangan lewatkan berbagai event seru dari <b>Point Blank Indonesia</b>!  
+                    Dapatkan hadiah menarik, skin eksklusif, dan banyak aktivitas komunitas setiap bulannya.  
+                    Yuk, cek event terbaru dan ikuti keseruannya!
+                </p>
+                <a href="https://www.pointblank.id/" target="_blank" class="btn btn-warning fw-bold">
+                    Lihat Event Point Blank
                 </a>
-            </p>
-            <button class="btn btn-primary mt-3" onclick="document.getElementById('demo').innerHTML = Date()">Tampilkan Waktu</button>
-            <p id="demo" class="mt-2"></p>
-        </div>
-
-        <!-- EVENT SECTION -->
-        <div class="event-section mt-4 text-center">
-            <h2 class="mb-3"><i class="bi bi-calendar-event"></i> Event Terbaru: Point Blank Indonesia</h2>
-            <img src="https://static.pointblank.id/assets/img/event/event-thumbnail.png" alt="Point Blank Event" class="event-img">
-            <p>
-                Jangan lewatkan berbagai event seru dari <b>Point Blank Indonesia</b>!  
-                Dapatkan hadiah menarik, skin eksklusif, dan banyak aktivitas komunitas setiap bulannya.  
-                Yuk, cek event terbaru dan ikuti keseruannya!
-            </p>
-            <a href="https://www.pointblank.id/" target="_blank" class="btn btn-warning fw-bold">
-                Lihat Event Point Blank
-            </a>
+            </div>
         </div>
     </div>
     <!-- Bubble Effect -->
